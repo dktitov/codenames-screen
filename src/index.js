@@ -1,13 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './index.css';
-import App from './App';
+import Game from './Game';
+import NotFound from './NotFound';
+import WelcomeScreen from './WeclomeScreen';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <>
+    <Router>
+      <Switch>
+        <Route exact path="/" component={WelcomeScreen} ></Route>
+        <Route path="/games/:gameId">
+          <Game />
+        </Route>
+        <Route component={NotFound} />
+      </Switch>
+    </Router>
+  </>,
   document.getElementById('root')
 );
 
